@@ -1,7 +1,5 @@
 package com.cleanup.todoc;
 
-import android.arch.core.executor.testing.InstantTaskExecutorRule;
-import android.arch.persistence.room.Room;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
@@ -9,20 +7,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
-import com.cleanup.todoc.database.TodocDataBase;
-import com.cleanup.todoc.model.Project;
-import com.cleanup.todoc.model.Task;
 import com.cleanup.todoc.ui.MainActivity;
-import com.cleanup.todoc.ui.TasksAdapter;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import java.util.List;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -32,10 +22,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static com.cleanup.todoc.TestUtils.withRecyclerView;
 import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasValue;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -45,11 +32,6 @@ import static org.junit.Assert.assertTrue;
  */
 @RunWith(AndroidJUnit4.class)
 public class MainActivityInstrumentedTest {
-
-
-    //@BeforeClass
-    //InstrumentationRegistry.getTargetContext
-    //Supprimer la database
 
     @BeforeClass
     public static void init() throws InterruptedException{

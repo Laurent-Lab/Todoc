@@ -1,10 +1,6 @@
 package com.cleanup.todoc.ui;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
-import android.arch.persistence.room.Room;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -21,10 +17,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.cleanup.todoc.R;
-import com.cleanup.todoc.database.TodocDataBase;
 import com.cleanup.todoc.injections.Injection;
 import com.cleanup.todoc.injections.ViewModelFactory;
 import com.cleanup.todoc.model.Project;
@@ -46,7 +40,6 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
     /**
      * List of all projects available in the application
      */
-    //private Project[] allProjects = Project.getAllProjects();
     private List<Project> allProjects = new ArrayList<>();
 
     /**
@@ -100,7 +93,9 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
     @NonNull
     private TextView lblNoTasks;
 
-    // FOR DATA
+    /**
+     * For data
+     */
     private TaskViewModel taskViewModel;
 
     @Override
@@ -127,23 +122,35 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
         });
     }
 
-    //CONFIG VIEWMODEL
+
+    /**
+     * Init the ViewModel
+     */
     public void configureViewModel(){
         ViewModelFactory viewModelFactory = Injection.provideViewModelFactory(this);
         this.taskViewModel = ViewModelProviders.of(this, viewModelFactory).get(TaskViewModel.class);
         this.taskViewModel.init();
     }
-    //QUESTION
+
+    /**
+     *
+     * @param projects
+     */
     private void updateProjects(List<Project> projects){
         allProjects.clear();
         allProjects.addAll(projects);
     }
 
+    /**
+     * return all projects
+     */
     private void getProjects(){
         this.taskViewModel.getProjects().observe(this, this::updateProjects);
     }
 
-    //GET ALL TASKS
+    /**
+     * return all tasks
+     */
     private void getTasks(){
         this.taskViewModel.getTasks().observe(this, this::updateTasks);
     }
@@ -200,9 +207,6 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
             }
             // If both project and name of the task have been set
             else if (taskProject != null) {
-                // TODO: Replace this by id of persisted task
-               //long id = (long) (Math.random() * 50000);
-
 
                 Task task = new Task(
                         taskProject.getId(),

@@ -17,7 +17,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertTrue;
@@ -26,8 +25,7 @@ import static org.junit.Assert.assertTrue;
 public class DaoTest {
 
     // For data
-    private TodocDataBase dataBase;
-    private TaskViewModel taskViewModel;
+    private TodocDataBase dataBase;;
 
     private static long PROJECT_ID = 1;
     private static Project PROJECT_DEMO = new Project(PROJECT_ID, "test", 0xFFEADAD1);
